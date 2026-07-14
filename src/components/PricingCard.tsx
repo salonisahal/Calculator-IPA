@@ -15,8 +15,8 @@ export function PricingCard({ item, onPress }: PricingCardProps) {
   return (
     <View style={[styles.card, item.highlight && styles.cardHighlight]}>
       <View style={styles.headerRow}>
-        <Text style={styles.plan}>{item.name}</Text>
-        <Text style={styles.price}>{item.priceLabel}</Text>
+        <Text style={[styles.plan, item.highlight && styles.planHighlight]}>{item.name}</Text>
+        <Text style={[styles.price, item.highlight && styles.priceHighlight]}>{item.priceLabel}</Text>
       </View>
       <View style={styles.featureList}>
         {item.features.map((feature) => (
@@ -26,7 +26,7 @@ export function PricingCard({ item, onPress }: PricingCardProps) {
           </View>
         ))}
       </View>
-      <PrimaryButton title={item.cta} onPress={onPress} variant={item.highlight ? 'primary' : 'secondary'} />
+      <PrimaryButton title={item.cta} onPress={onPress} variant={item.highlight ? 'primary' : 'ghost'} />
     </View>
   );
 }
@@ -66,12 +66,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-SemiBold',
     color: colors.textPrimary,
   },
+  planHighlight: {
+    color: colors.primaryDark,
+  },
   price: {
     fontSize: 16,
     lineHeight: 20,
     letterSpacing: 0.2,
     fontFamily: 'Inter-Bold',
     color: colors.textPrimary,
+  },
+  priceHighlight: {
+    color: colors.primaryDark,
   },
   featureList: {
     marginBottom: s(3),

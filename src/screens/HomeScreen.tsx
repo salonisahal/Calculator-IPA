@@ -50,7 +50,11 @@ export default function HomeScreen() {
           <Text style={styles.heroSubtitle}>
             With stellar one-click reports and unmatched support, see how Circle can make a difference in your business.
           </Text>
-          <PrimaryButton title="Get Started Free" onPress={() => navigation.navigate('Pricing')} />
+          <PrimaryButton
+            title="Get Started Free"
+            onPress={() => navigation.navigate('Pricing')}
+            style={styles.heroButton}
+          />
           <Pressable
             onPress={() => navigation.navigate('Contact')}
             android_ripple={{ color: 'rgba(0,0,0,0.08)' }}
@@ -100,21 +104,21 @@ const styles = StyleSheet.create({
   hero: {
     paddingHorizontal: s(4),
     paddingVertical: s(6),
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background,
   },
   glow: {
     position: 'absolute',
-    top: s(4),
-    right: s(4),
-    width: s(24),
-    height: s(24),
-    borderRadius: s(12),
-    backgroundColor: colors.primaryLight,
-    opacity: 0.4,
+    top: s(3),
+    right: s(3),
+    width: s(22),
+    height: s(22),
+    borderRadius: s(11),
+    backgroundColor: colors.accent,
+    opacity: 0.2,
   },
   heroTitle: {
-    fontSize: 24,
-    lineHeight: 28,
+    fontSize: 26,
+    lineHeight: 31,
     letterSpacing: -0.5,
     fontFamily: 'Inter-Bold',
     color: colors.textPrimary,
@@ -128,6 +132,11 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginBottom: s(4),
   },
+  heroButton: {
+    alignSelf: 'stretch',
+    paddingVertical: s(4),
+    borderRadius: s(3),
+  },
   secondaryLink: {
     marginTop: s(3),
     alignSelf: 'flex-start',
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     letterSpacing: 0.2,
     fontFamily: 'Inter-SemiBold',
-    color: colors.primaryDark,
+    color: colors.primary,
   },
   horizontalContent: {
     paddingHorizontal: s(4),

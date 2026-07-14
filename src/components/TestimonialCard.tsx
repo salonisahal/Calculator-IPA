@@ -11,11 +11,18 @@ type TestimonialCardProps = {
 
 export function TestimonialCard({ item }: TestimonialCardProps) {
   const stars = Array.from({ length: 5 }).map((_, index) => index < item.rating);
+  const initials = item.name
+    .split(' ')
+    .map((part) => part.charAt(0))
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <View style={styles.card}>
       <View style={styles.header}>
         <View style={styles.avatar}>
-          <MaterialIcons name="person" size={s(5)} color={colors.textInverse} />
+          <Text style={styles.avatarText}>{initials}</Text>
         </View>
         <View style={styles.headerText}>
           <Text style={styles.name}>{item.name}</Text>
@@ -23,15 +30,18 @@ export function TestimonialCard({ item }: TestimonialCardProps) {
         </View>
       </View>
       <Text style={styles.review}>{item.review}</Text>
-      <View style={styles.stars}>
-        {stars.map((filled, index) => (
-          <MaterialIcons
-            key={`star-${item.id}-${index}`}
-            name={filled ? 'star' : 'star-border'}
-            size={s(4)}
-            color={colors.accent}
-          />
-        ))}
+      <View style={styles.ratingRow}>
+        <View style={styles.stars}>
+          {stars.map((filled, index) => (
+            <MaterialIcons
+              key={`star-${item.id}-${index}`}
+              name={filled ? 'star' : 'star-border'}
+              size={s(4)}
+              color={colors.accent}
+            />
+          ))}
+        </View>
+        <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
       </View>
     </View>
   );
@@ -67,6 +77,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  avatarText: {
+    fontSize: 14,
+    lineHeight: 18,
+    letterSpacing: 0.2,
+    fontFamily: 'Inter-Bold',
+    color: colors.textInverse,
+  },
   headerText: {
     marginLeft: s(3),
     flex: 1,
@@ -94,8 +111,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Regular',
     color: colors.textSecondary,
   },
+  ratingRow: {
+    marginTop: s(3),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   stars: {
     flexDirection: 'row',
-    marginTop: s(3),
+  },
+  ratingText: {
+    fontSize: 12,
+    lineHeight: 16,
+    letterSpacing: 0.2,
+    fontFamily: 'Inter-SemiBold',
+    color: colors.textPrimary,
   },
 });

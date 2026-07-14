@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     width: s(2),
     height: s(2),
     borderRadius: s(1),
-    backgroundColor: colors.border,
+    backgroundColor: colors.primaryLight,
     marginHorizontal: s(1),
   },
   dotActive: {
